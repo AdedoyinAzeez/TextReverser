@@ -1,0 +1,12 @@
+/Users/macbookpro/Desktop/TextReverser/TextReverser/bin/Debug/netcoreapp3.1/TextReverser.deps.json
+/Users/macbookpro/Desktop/TextReverser/TextReverser/bin/Debug/netcoreapp3.1/TextReverser.runtimeconfig.json
+/Users/macbookpro/Desktop/TextReverser/TextReverser/bin/Debug/netcoreapp3.1/TextReverser.runtimeconfig.dev.json
+/Users/macbookpro/Desktop/TextReverser/TextReverser/bin/Debug/netcoreapp3.1/TextReverser.dll
+/Users/macbookpro/Desktop/TextReverser/TextReverser/bin/Debug/netcoreapp3.1/TextReverser.pdb
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.csprojAssemblyReference.cache
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.AssemblyInfoInputs.cache
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.AssemblyInfo.cs
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.csproj.CoreCompileInputs.cache
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.dll
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.pdb
+/Users/macbookpro/Desktop/TextReverser/TextReverser/obj/Debug/netcoreapp3.1/TextReverser.genruntimeconfig.cache
