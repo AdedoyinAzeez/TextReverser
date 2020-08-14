@@ -48,7 +48,8 @@ namespace IOReverse
         public static void TextReverser(String input, String output)
         {
             //String line;
-            var offset = 0;
+            int offset = 0;
+            int readLength = 10;
 
             try
             {
@@ -56,56 +57,68 @@ namespace IOReverse
 
                 if (inputFile.CanRead)
                 {
+                    FileStream outputFile = new FileStream(output, FileMode.Open, FileAccess.Write);
 
-                    inputFile.Seek(offset, SeekOrigin.End);
-
-                    byte[] bytes = new byte[inputFile.Length];
+                    byte[] bytes = new byte[readLength];
                     int numBytesToRead = (int)inputFile.Length;
                     int numBytesRead = 0;
+                    int remainder = 0;
 
-                    while(numBytesToRead > 0)
+                    //offset = numBytesToRead; offset > -remainder; offset -= readLength
+                    for (offset = 0; offset <= numBytesToRead; offset+= readLength)
                     {
-                        for(offset = 0; offset < inputFile.Length; offset++)
-                        {
-                            int n = inputFile.Read(bytes, numBytesRead, numBytesToRead);
-                            //int n = inputFile.ReadByte();
-                            inputFile.ReadByte();
-                            //offset++;
+                        //if (offset < 0)
+                        //{
+                        //    //offset = offset;
+                        //    //readLength = offset;
+                        //}
 
-                            //if (n == 0)
-                            //{
-                              //  break;
-                            //}
-
-                            //numBytesRead += n;
-                            //numBytesToRead -= n;
-                        }
                         
-                    }
+                        inputFile.Seek(-offset, SeekOrigin.End);
 
-                    numBytesToRead = bytes.Length;
+                        int n = inputFile.Read(bytes, 0, readLength);
+                        numBytesRead += n;
+                        remainder = numBytesToRead - numBytesRead;
 
-                    try
-                    {
-                        FileStream outputFile = new FileStream(output, FileMode.Open, FileAccess.Write);
-
-                        if (outputFile.CanWrite)
+                        if (remainder < readLength)
                         {
-                            outputFile.WriteByte(bytes[offset]);
-                            //outputFile.Write(bytes, 0, numBytesToRead);
-                            
+                            readLength = remainder;
+                        }
 
+                        //if (n < -offset)
+                        //{
+                        //    break;
+                        //}
+
+                        //if (remainder < numBytesToRead)
+                        //{
+                        //    numBytesToRead = remainder;
+                        //}
+
+                        try
+                        {
+                            if (outputFile.CanWrite)
+                            {
+                                Array.Reverse(bytes);
+                                //outputFile.Position = 0;
+                                outputFile.Write(bytes, 0, n);
+                                outputFile.Flush();
+                               
+                            }
+                        }
+                        catch (IOException ex)
+                        {
+                            Console.WriteLine(ex.Message + " outputCatch");
                         }
                     }
-                    catch (IOException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+
+                    outputFile.Close();
+                    outputFile.Dispose();
                 }
             }
             catch (IOException ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + " inputCatch");
             }
 
             Console.WriteLine("Data written to file");
@@ -114,52 +127,3 @@ namespace IOReverse
         }
     }
 }
-
-        //converts the contents of the line read into a character array
-        //char[] charArray = line.ToCharArray();
-
-        //try
-        //{
-        //    FileStream inputFile = File.Open(input, FileMode.Open);
-        //    if (inputFile.CanRead)
-        //    {
-        //        inputFile.Seek(charOffset, SeekOrigin.End);
-        //        byte[] bytes = System.Text.ASCIIEncoding.ASCII.GetBytes(line);
-        //        var b = inputFile.ReadByte();
-        //        //inputFile.WriteByte();
-
-        //    }
-        //}
-        //catch (IOException ex)
-        //{
-        //    Console.WriteLine(ex.Message);
-        //}
-
-        //try
-        //{
-        //    FileStream outputFile = File.Open(output, FileMode.Open);
-        //    if (outputFile.CanWrite)
-        //    {
-        //        //string s = textBox1.Text;
-        //        //reversedLine = textBox1.Text;
-        //        outputFile.Seek(lineOffset, SeekOrigin.End);
-        //        byte[] bytes = System.Text.ASCIIEncoding.ASCII.GetBytes(line);
-        //        outputFile.Write(bytes, 0, bytes.Length);
-        //    }
-        //    outputFile.Flush();
-        //    outputFile.Close();
-
-        //}
-        //catch (IOException ex)
-        //{
-        //    Console.WriteLine(ex.Message);
-        //}
-
-    //opens the output file
-    //    using (StreamWriter writeFile = File.AppendText(output))
-    //{
-    //    list.Reverse();
-    //    //Console.SetCursorPosition
-
-        //list.ForEach(i => writeFile.WriteLine(i));
-    //}
